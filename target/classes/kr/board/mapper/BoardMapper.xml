@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.board.mapper.BoardMapper">
+
+        <select id = "getLists" resultType="kr.board.entity.Board">
+          SELECT * 
+          FROM BOARD 
+          ORDER BY IDX DESC;  
+        </select>
+        
+        <select id = "getContnt" resultType="kr.board.entity.Board">
+        
+        SELECT * 
+        FROM BOARD 
+        WHERE idx=#{idx}; 
+        
+        </select>
+        
+        
+         <select id="boardContent" resultType="kr.board.entity.Board">
+           
+           SELECT * 
+           FROM 
+           BOARD 
+           WHERE
+           idx=#{idx}; 
+        
+        </select>
+        
+        
+        
+        <insert id = "boardInsert" parameterType="kr.board.entity.Board">
+          INSERT INTO BOARD 
+          (
+           TITLE
+          ,CONTENT
+          ,WRITER
+          )  
+          VALUES
+          (
+           #{title}
+          ,#{content}
+          ,#{writer}
+          )  
+        </insert>
+        
+        
+        <select id="getBoardDetail" resultType="kr.board.entity.Board">
+        
+        SELECT * 
+        FROM BOARD
+        WHERE IDX=#{idx};
+        
+        </select>
+        
+        <delete id="deleteBoard" parameterType="int" >
+        
+        DELETE  
+        FROM BOARD 
+        WHERE IDX=#{idx};
+        
+        
+        </delete>
+        
+        <update id="boardUpdate" parameterType="kr.board.entity.Board">
+        
+        UPDATE BOARD
+        SET  
+        TITLE=#{title}
+       ,CONTENT=#{content}
+       ,INDATE=NOW()
+        WHERE 
+        IDX=#{idx};
+
+        
+        </update>
+        
+      
+
+</mapper>
+
+
+
+
+
+
+
+
